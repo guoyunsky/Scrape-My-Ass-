@@ -70,7 +70,7 @@ def format_proxy(source_proxy):
     return "http://%s\n" % source_proxy
 
 def main(proxy=None, output_file_path=None, check=False):
-    socket.setdefaulttimeout(10)
+    socket.setdefaulttimeout(3)
     proxylist = hidemyass("http://hidemyass.com/proxy-list", proxy)
     
     file = None
@@ -101,10 +101,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Scrape proxy list of hidemyass.com and check if proxy is " 
         " working or not.for example:\n./scrapmyass -p 192.168.1.3:8080 -o /tmp/proxy.txt -c True")
     parser.add_argument('-p','--proxy', help='http proxy to request hidemyass.com', required=False)
-    parser.add_argument('-o','--output_file', help='the file path which will writed http proxy', required=False)
+    parser.add_argument('-o','--output', help='the file path which will writed http proxy', required=False)
     parser.add_argument('-c','--check', help='whether check the http proxy', required=False, action='store_true')
     args = parser.parse_args()
     
-    main(args.proxy, args.output_file, args.check)
+    main(args.proxy, args.output, args.check)
     
    
